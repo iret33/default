@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+# shellcheck disable=SC2034  # Disable warning about unused variables
+
+# Determine if terminal is capable of showing colors
+# When COL_TABLE is sourced via gravity invoked by FTL, FORCE_COLOR is set to true
+if { [ -t 1 ] && [ "$(tput colors)" -ge 8 ]; } || [ "${FORCE_COLOR}" ]; then
+  # Bold and underline may not show up on all clients
+  # If something MUST be emphasized, use both
+  COL_BOLD='[1m'
+  COL_NC='[0m'
+  COL_GRAY='[90m'
+  COL_RED='[91m'
+  COL_GREEN='[32m'
+  COL_YELLOW='[33m'
+  COL_BLUE='[94m'
+  COL_PURPLE='[95m'
+  COL_CYAN='[96m'
+else
+  # Provide empty variables for `set -u`
+  COL_BOLD=""
+  COL_NC=""
+  COL_GRAY=""
+  COL_RED=""
+  COL_GREEN=""
+  COL_YELLOW=""
+  COL_BLUE=""
+  COL_PURPLE=""
+  COL_CYAN=""
+fi
+
+TICK="[${COL_GREEN}✓${COL_NC}]"
+CROSS="[${COL_RED}✗${COL_NC}]"
+INFO="[i]"
+QST="[?]"
+OVER="\\r[K"

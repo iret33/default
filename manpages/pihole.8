@@ -1,0 +1,339 @@
+.TH "Pi-hole" "8" "Pi-hole" "Pi-hole" "April 2020"
+.SH "NAME"
+
+Pi-hole : A black-hole for internet advertisements
+.br
+.SH "SYNOPSIS"
+
+\fBpihole\fR (\fB-allow\fR|\fB-deny\fR) [options] domain(s)
+.br
+\fBpihole\fR (\fB--allow-regex\fR|\fB--regex\fR) [options] domain(s)
+.br
+\fBpihole\fR (\fB--allow-wild\fR|\fB--wild\fR) [options] domain(s)
+.br
+\fBpihole setpassword\fR password
+.br
+\fBpihole\fR \fB-d\fR [-a] [-c]
+.br
+\fBpihole -f
+.br
+pihole -r
+.br
+\fBpihole\fR \fB-t\fR [arg]
+.br
+\fBpihole -g\fR
+.br
+\fBpihole\fR \fB-q\fR [options]
+.br
+\fBpihole\fR \fB-l\fR (\fBon|off|off noflush\fR)
+.br
+\fBpihole -up \fR[--check-only]
+.br
+\fBpihole -v\fR
+.br
+\fBpihole uninstall\fR
+.br
+\fBpihole status\fR
+.br
+\fBpihole reloaddns\fR
+.br
+\fBpihole reloadlists\fR
+.br
+\fBpihole\fR (\fBenable\fR|\fBdisable\fR [time])
+.br
+\fBpihole\fR \fBcheckout\fR repo [branch]
+.br
+\fBpihole\fR \fBapi\fR [verbose] endpoint
+.br
+\fBpihole\fR \fBhelp\fR
+.br
+.SH "DESCRIPTION"
+
+Available commands and options:
+.br
+
+\fBallow, allowlist\fR [options] [<domain1> <domain2 ...>]
+.br
+    Adds or removes specified domain or domains to the Allowlist
+.br
+
+\fBdeny, denylist\fR [options] [<domain1> <domain2 ...>]
+.br
+    Adds or removes specified domain or domains to the denylist
+.br
+
+\fB--regex, regex\fR [options] [<regex1> <regex2 ...>]
+.br
+    Add or removes specified regex filter to the regex denylist
+.br
+
+\fB--allow-regex\fR [options] [<regex1> <regex2 ...>]
+.br
+    Add or removes specified regex filter to the regex allowlist
+.br
+
+\fB--wild, wildcard\fR [options] [<domain1> <domain2 ...>]
+.br
+    Add or removes specified domain to the wildcard denylist
+.br
+
+\fB--allow-wild\fR [options] [<domain1> <domain2 ...>]
+.br
+    Add or removes specified domain to the wildcard allowlist
+.br
+
+    (Allow-/denylist manipulation options):
+.br
+      not, -d, --delmode  Remove domain(s) from the list
+.br
+      -q, --quiet         Make output less verbose
+.br
+      -l, --list          Display all your listed domains
+.br
+
+\fB-d, debug\fR [-a]
+.br
+    Start a debugging session
+.br
+
+      -a                Enable automated debugging
+      -c                Include a Pi-hole database integrity check
+.br
+
+\fB-f, flush\fR
+.br
+    Flush the Pi-hole log
+.br
+
+\fB-r, repair\fR
+.br
+    Repair Pi-hole subsystems
+.br
+
+\fB-t, tail\fR [arg]
+.br
+    View the live output of the Pi-hole log
+.br
+
+      [arg]             Optional argument to filter the log for
+                        (regular expressions are supported)
+.br
+
+\fB-g, updateGravity\fR
+.br
+    Update the list of ad-serving domains
+.br
+
+\fB-q, query\fR [option]
+.br
+    Query the adlists for a specified domain
+.br
+
+    (Query options):
+.br
+      -partial          Search the adlists for partially matching domains
+.br
+      -all              Return all query matches within a adlists
+.br
+
+\fB-h, --help, help\fR
+.br
+    Show a help dialog
+.br
+
+\fB-l, logging\fR [on|off|off noflush]
+.br
+    Specify whether the Pi-hole log should be used
+.br
+
+    (Logging options):
+.br
+      on                Enable the Pi-hole log at /var/log/pihole/pihole.log
+.br
+      off               Disable and flush the Pi-hole log at
+                        /var/log/pihole/pihole.log
+.br
+      off noflush       Disable the Pi-hole log at /var/log/pihole/pihole.log
+.br
+
+\fB-up, updatePihole\fR [--check-only]
+.br
+    Update Pi-hole subsystems
+.br
+
+      --check-only      Exit script before update is performed.
+.br
+
+\fB-v, version\fR
+.br
+    Show installed versions of Pi-hole, Web Interface &amp; FTL
+.br
+
+\fBsetpassword\fR
+.br
+    Set Web Interface password
+.br
+
+\fBuninstall\fR
+.br
+    Uninstall Pi-hole from your system
+.br
+
+\fBstatus\fR
+.br
+    Display the running status of Pi-hole subsystems
+.br
+
+\fBenable\fR [time]
+.br
+    Enable Pi-hole blocking, optionally for a set duration
+.br
+
+\fBdisable\fR [time]
+.br
+    Disable Pi-hole blocking, optionally for a set duration
+.br
+
+    (time options):
+.br
+      #s                Disable Pi-hole functionality for # second(s)
+.br
+      #m                Disable Pi-hole functionality for # minute(s)
+.br
+
+\fBreloaddns\fR
+.br
+    Update the lists and flush the cache without restarting the DNS server
+.br
+
+\fBreloadlists\fR
+.br
+    Update the lists WITHOUT flushing the cache or restarting the DNS server
+.br
+
+\fBcheckout\fR [repo] [branch]
+.br
+    Switch Pi-hole subsystems to a different GitHub branch
+.br
+
+    (repo options):
+.br
+      core              Change the branch of Pi-hole's core subsystem
+.br
+      web               Change the branch of Admin Console subsystem
+.br
+      ftl               Change the branch of Pi-hole's FTL subsystem
+.br
+    (branch options):
+.br
+      master            Update subsystems to the latest stable release
+.br
+      dev               Update subsystems to the latest development
+                        release
+.br
+      branchname        Update subsystems to the specified branchname
+.br
+
+\fBapi\fR [verbose] endpoint
+.br
+    Query the Pi-hole API at <endpoint>
+.br
+
+      verbose           Show authentication and status messages
+.br
+
+.SH "EXAMPLE"
+
+Some usage examples
+.br
+
+Allow-/denylist manipulation
+.br
+
+\fBpihole allow iloveads.example.com\fR
+.br
+    Allow "iloveads.example.com"
+.br
+
+\fBpihole deny remove noads.example.com\fR
+.br
+    Removes "noads.example.com" from denylist
+.br
+
+\fBpihole --wild example.com\fR
+.br
+    Adds example.com as a wildcard - would block all subdomains of
+    example.com, including example.com itself.
+.br
+
+\fBpihole --regex "ad.*\\.example\\.com$"\fR
+.br
+    Adds "ad.*\\.example\\.com$" to the regex denylist.
+    Would block all subdomains of example.com which start with "ad"
+.br
+
+Changing the Web Interface password
+.br
+
+\fBpihole setpassword ExamplePassword\fR
+.br
+    Change the password to "ExamplePassword"
+.br
+
+Updating lists from internet sources
+.br
+
+\fBpihole -g\fR
+.br
+    Update the list of ad-serving domains
+.br
+
+Displaying version information
+.br
+
+\fBpihole -v\fR
+.br
+    Display the current version of Pi-hole
+.br
+
+Temporarily disabling Pi-hole
+.br
+
+\fBpihole disable 5m\fR
+.br
+    Disable Pi-hole functionality for five minutes
+.br
+
+Switching Pi-hole subsystem branches
+.br
+
+\fBpihole checkout master\fR
+.br
+    Switch to master branch
+.br
+
+\fBpihole checkout core dev\fR
+.br
+    Switch to core development branch
+.br
+
+\fBpihole networkflush\fR
+.br
+    Flush information stored in Pi-hole's network table
+    Add '--arp' to additionally flush the ARP table
+.br
+
+\fBpihole api stats/summary\fR
+.br
+    Queries FTL for the stats/summary endpoint
+.br
+
+\fBpihole api verbose stats/summary\fR
+.br
+    Same as above, but shows authentication and status messages
+.br
+
+.SH "COLOPHON"
+
+Get sucked into the latest news and community activity by entering Pi-hole's orbit. Information about Pi-hole, and the latest version of the software can be found at https://pi-hole.net.
+.br
