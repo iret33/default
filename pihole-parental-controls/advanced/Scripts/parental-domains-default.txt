@@ -1,0 +1,41 @@
+# Pi-hole Parental Controls - Default Service Domains
+# This file contains placeholder domains for the YouTube service category
+# The user will provide comprehensive domain lists for all services later
+#
+# Format: One domain per line
+# Comments start with #
+# Supports both exact domains and regex patterns
+
+# YouTube domains (Service Category ID: 1)
+youtube.com
+www.youtube.com
+m.youtube.com
+music.youtube.com
+gaming.youtube.com
+studio.youtube.com
+youtu.be
+youtubei.googleapis.com
+youtube-nocookie.com
+youtube-ui.l.google.com
+youtubeeducation.com
+youtube-3rd-party.l.google.com
+yt3.ggpht.com
+ytimg.l.google.com
+ggpht.com
+googlevideo.com
+i.ytimg.com
+s.ytimg.com
+
+# Note: Complete domain lists for the following services will be provided by the user:
+# - Gaming (Minecraft, PlayStation Network, Xbox Live, Steam, Epic Games, etc.)
+# - Social Media (Facebook, Instagram, Twitter/X, TikTok, Snapchat, etc.)
+# - Streaming (Netflix, Hulu, Disney+, Prime Video, etc.)
+# - Messaging (WhatsApp, Telegram, Discord, etc.)
+# - Shopping (Amazon, eBay, etc.)
+# - Adult Content
+# - Ads & Tracking
+#
+# To add domains for other services, use:
+#   pihole parental service domain add <service_id> <domain>
+# Or import from a file:
+#   pihole parental service import <service_id> <file_path>
